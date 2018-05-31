@@ -97,6 +97,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805311044549_InitialCreate.cs" />
+    <Compile Include="Migrations\201805311044549_InitialCreate.Designer.cs">
+      <DependentUpon>201805311044549_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +123,11 @@
       <Project>{7c58ca83-1645-4cc1-a645-2fba50dadf67}</Project>
       <Name>CaptureCustomers.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805311044549_InitialCreate.resx">
+      <DependentUpon>201805311044549_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
