@@ -11,7 +11,6 @@ namespace CaptureClients.Entities
     {
         [Key]
         public int ID { get; set; }
-        public int MyProperty { get; set; }
         [Required]
         public string Name { get; set; }
         public string Latitude { get; set; }
