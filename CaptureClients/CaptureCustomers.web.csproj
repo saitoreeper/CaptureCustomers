@@ -93,10 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="DataContexts\CustomerCaptureDb.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomersHelper.cs" />
     <Compile Include="Migrations\201805311044549_InitialCreate.cs" />
     <Compile Include="Migrations\201805311044549_InitialCreate.Designer.cs">
       <DependentUpon>201805311044549_InitialCreate.cs</DependentUpon>
@@ -115,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
