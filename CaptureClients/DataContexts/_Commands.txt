@@ -1,0 +1,12 @@
+﻿Enable-Migrations
+Add-Migration InitialCreate
+Update-Database
+Update-Database -ConfigurationTypeName FTWConfiguration -SourceMigration $InitialDatabase -Script
+
+Update-Database -ConfigurationTypeName FTWConfiguration
+
+Add-Migration -ConfigurationTypeName FTWConfiguration InitialCreate
+
+Update-Database -ConfigurationTypeName FTWConfiguration –TargetMigration: DuplicationResolution
+
+Update-Database -Script -SourceMigration: $InitialDatabase -TargetMigration: DuplicationResolution
