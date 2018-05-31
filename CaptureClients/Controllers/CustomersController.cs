@@ -7,18 +7,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace CaptureClients.Controllers
 {
     public class CustomersController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<Customer> Get()
-        {
-            CustomersHelper Customer = new CustomersHelper();
-            IEnumerable<Customer> customersList = Customer.GetCustomersList();
 
-            return customersList;
+        // GET: api/Contacts/5
+        [ResponseType(typeof(Customer))]
+        public IHttpActionResult GetContacts()
+        {            
+                CustomersHelper Customer = new CustomersHelper();
+                IEnumerable<Customer> customerList = Customer.GetCustomersList();
+
+                return Ok(customerList);
         }
 
         // GET api/<controller>/5
