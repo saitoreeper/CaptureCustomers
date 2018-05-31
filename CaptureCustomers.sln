@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureCustomers.web", "CaptureClients\CaptureCustomers.web.csproj", "{2FFAA43B-F271-4F64-B2FE-07D6D115B7D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureCustomers.Api", "CaptureClients\CaptureCustomers.Api.csproj", "{2FFAA43B-F271-4F64-B2FE-07D6D115B7D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureCustomers.Entities", "CaptureClients.Entities\CaptureCustomers.Entities.csproj", "{7C58CA83-1645-4CC1-A645-2FBA50DADF67}"
 EndProject
