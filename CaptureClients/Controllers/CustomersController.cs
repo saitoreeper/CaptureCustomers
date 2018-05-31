@@ -7,10 +7,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace CaptureClients.Controllers
 {
+    [EnableCors(origins: "http://localhost:54362", headers: "*", methods: "*")]
     public class CustomersController : ApiController
     {
 

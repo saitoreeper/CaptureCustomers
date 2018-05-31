@@ -1,0 +1,18 @@
+namespace CaptureClients.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class CustomersFieldChange : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Customers", "MyProperty");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Customers", "MyProperty", c => c.Int(nullable: false));
+        }
+    }
+}
