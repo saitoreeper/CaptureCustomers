@@ -21,6 +21,7 @@
                 <th>Name</th>
                 <th>Latitude</th>
                 <th>longitude</th>
+                <th>Links</th>
             </tr>
         </thead>
     </table>
@@ -129,6 +130,7 @@
                    "<td>" + customer.Name + "</td>" +
                    "<td>" + customer.Latitude + "</td>"
                     + "<td>" + customer.longitude + "</td>" +
+                     "<td><a href=" + "ViewContacts.html?id=" + customer.ID + ">link</a></td>" +
                   "</tr>";
                 return ret;
             }

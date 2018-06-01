@@ -19,57 +19,13 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Latitude</th>
-                <th>longitude</th>
+                <th>Email</th>
+                <th>Contact Number</th>
             </tr>
         </thead>
     </table>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <button type="button" id="addButton"
-                    class="btn btn-primary"
-                    onclick="addClick();">
-                Add Product
-            </button>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    Product Information
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name"
-                               class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="latitude">Latitude</label>
-                        <input type="text" id="latitude" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="longitude">Longitude</label>
-                        <input type="text" id="longitude" class="form-control" />
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button type="button" id="updateButton"
-                                    class="btn btn-primary"
-                                    onclick="updateClick();">
-                                Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <footer>
         <script src="../scripts/jquery-1.9.1.min.js"></script>
@@ -89,9 +45,15 @@
         });
 
         function contactsList() {
+            var url = window.location.href;
+            var id = url.substring(0, "?");
+            var equalsFind = url.indexOf("=");
+            var id = url.substring(equalsFind + 1, url.length);
+            alert(id);
+
             // Call Web API to get a list of contacts
             $.ajax({
-                url: 'http://localhost:52734/api/contacts/1',
+                url: 'http://localhost:52734/api/contacts/' + id,
                 type: 'GET',
                 dataType: 'json',
                 success: function (contacts) {
