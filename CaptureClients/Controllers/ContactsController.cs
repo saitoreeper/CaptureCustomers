@@ -15,7 +15,7 @@ using System.Web.Http.Cors;
 
 namespace CaptureClients.Controllers
 {
-    [EnableCors(origins: "http://localhost:54362", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactsController : ApiController
     {
         private CustomerCaptureDb db = new CustomerCaptureDb();
