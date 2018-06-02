@@ -16,7 +16,7 @@ namespace CaptureClients.Controllers
     public class CustomersController : ApiController
     {
 
-        // GET: api/Contacts/5
+        // GET: api/Customers/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult GetContacts()
         {            

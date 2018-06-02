@@ -49,7 +49,7 @@
                         <div class="col-xs-12">
                             <button type="button" id="updateButton"
                                     class="btn btn-primary"
-                                    onclick="updateClick();">
+                                    onclick="addCustomerClick();">
                                 Add
                             </button>
                         </div>
@@ -63,5 +63,43 @@
         <script src="../scripts/jquery-1.9.1.min.js"></script>
         <script src="../scripts/bootstrap.min.js"></script>
     </footer>
+
+    <script>
+        var Customer = {
+            Name: "",
+            Latitude: "",
+            longitude: ""
+        }
+
+        function addCustomerClick() {
+            // Build product object from inputs
+            Customer = new Object();
+            Customer.Name = $("#name").val();
+            Customer.Latitude = $("#latitude").val();
+            Customer.longitude = $("#longitude").val();
+
+            customerAdd(Customer);
+        }
+
+        function customerAdd(customer) {
+            $.ajax({
+                url: "http://localhost:52734/api/customers",
+                type: 'POST',
+                contentType:"application/json;charset=utf-8",
+                data: JSON.stringify(customer),
+                success: function (customer) {
+                    customerAddSuccess(customer);
+                },
+                error: function (request, message, error) {
+                    handleException(request, message, error);
+                }
+            });
+        }
+
+        function customerAddSuccess(product) {
+            window.location.href = '/pages/Index.html'
+        }
+    </script>
+
 </body>
 </html>

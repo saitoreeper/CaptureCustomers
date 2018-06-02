@@ -33,13 +33,7 @@
     </footer>
 
     <script>
-        // Handle click event on Update button
-        function updateClick() {
-        }
-        // Handle click event on Add button
-        function addClick() {
-        }
-
+      
         $(document).ready(function () {
             contactsList();
         });
@@ -49,7 +43,6 @@
             var id = url.substring(0, "?");
             var equalsFind = url.indexOf("=");
             var id = url.substring(equalsFind + 1, url.length);
-            alert(id);
 
             // Call Web API to get a list of contacts
             $.ajax({
