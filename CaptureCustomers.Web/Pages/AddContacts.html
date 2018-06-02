@@ -30,28 +30,26 @@
                     Product Information
                 </div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name"
-                               class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="latitude">Email</label>
-                        <input type="text" id="email" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="longitude">Contact Number</label>
-                        <input type="text" id="contactNumber" class="form-control" />
-                    </div>
+                    <form action="" name="addContactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="latitude">Email</label>
+                            <input type="text" id="email" name="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude">Contact Number</label>
+                            <input type="text" id="contactNumber" name="contactNumber" class="form-control" />
+                        </div>
+                        <button type="submit" id="updateButton" class="btn btn-primary">Add Contact</button>
+                    </form>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-xs-12">
-                            <button type="button" id="updateButton"
-                                    class="btn btn-primary"
-                                    onclick="addContactClick();">
-                                Add
-                            </button>
+                           
                         </div>
                     </div>
                 </div>
@@ -61,15 +59,49 @@
 
     <footer>
         <script src="../scripts/jquery-1.9.1.min.js"></script>
+        <script src="../scripts/jquery.validate.min.js"></script>
         <script src="../scripts/bootstrap.min.js"></script>
     </footer>
 
     <script>
+        // Initialize form validation on the contact form.
+        $("form[name='addContactForm']").validate({
+            // Specify validation rules
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                contactNumber: {
+                    required: true,
+                    minlength: 9,
+                    maxlength: 15
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                name: "Please enter Contact name",
+                email: "Please enter a valid email address",
+                contactNumber: {
+                    required: "Please enter a contact number",
+                    minlength: "Your contact number cannot be less than 9 characters",
+                    maxlength: "Your contact number cannot be less than 15 characters"
+                }
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                form.submit();
+                addContactClick();
+            }
+        });
+
         var Contact = {
             Name: "",
             Email: "",
             ContactNumber: "",
-            CustomerId: 0
+            ContactId: 0
         }
 
         function addContactClick() {
@@ -84,7 +116,7 @@
             var equalsFind = url.indexOf("=");
             var id = url.substring(equalsFind + 1, url.length);
 
-            Contact.CustomerId = id;
+            Contact.ContactId = id;
 
             ContactAdd(Contact);
         }
@@ -96,7 +128,7 @@
             $.ajax({
                 url: "http://localhost:52734/api/Contacts",
                 type: 'POST',
-                contentType:"application/json;charset=utf-8",
+                contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(Contact),
                 success: function (Contact) {
                     ContactAddSuccess(Contact);
