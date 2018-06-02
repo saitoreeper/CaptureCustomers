@@ -42,9 +42,6 @@
     </footer>
 
     <script>
-        // Handle click event on Update button
-
-
         $(document).ready(function () {
             customersList();
         });
@@ -90,7 +87,7 @@
                    "<td>" + customer.Name + "</td>" +
                    "<td>" + customer.Latitude + "</td>"
                     + "<td>" + customer.longitude + "</td>" +
-                     "<td><a href=" + "ViewContacts.html?id=" + customer.ID + ">link</a></td>" +
+                     "<td><a href=" + "ViewContacts.html?id=" + customer.ID + ">View Contacts</a> <a href=" + "AddContacts.html?id=" + customer.ID + ">Add Contacts</a></td>" +
                   "</tr>";
                 return ret;
             }

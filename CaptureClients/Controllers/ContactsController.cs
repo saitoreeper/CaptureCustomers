@@ -78,18 +78,15 @@ namespace CaptureClients.Controllers
         }
 
         // POST: api/Contacts
-        [ResponseType(typeof(Contact))]
-        public IHttpActionResult PostContact(Contact contact)
+        public HttpResponseMessage PostContact(Contact contact)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return this.Request.CreateResponse(HttpStatusCode.OK);
             }
-
-            db.Contacts.Add(contact);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = contact.ID }, contact);
+            return this.Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         // DELETE: api/Contacts/5

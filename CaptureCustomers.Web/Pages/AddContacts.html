@@ -49,7 +49,7 @@
                         <div class="col-xs-12">
                             <button type="button" id="updateButton"
                                     class="btn btn-primary"
-                                    onclick="updateClick();">
+                                    onclick="addContactClick();">
                                 Add
                             </button>
                         </div>
@@ -65,9 +65,64 @@
     </footer>
 
     <script>
+        var Contact = {
+            Name: "",
+            Email: "",
+            ContactNumber: "",
+            CustomerId: 0
+        }
+
+        function addContactClick() {
+            // Build contact object from inputs
+            Contact = new Object();
+            Contact.Name = $("#name").val();
+            Contact.Email = $("#email").val();
+            Contact.ContactNumber = $("#contactNumber").val();
+
+            var url = window.location.href;
+            var id = url.substring(0, "?");
+            var equalsFind = url.indexOf("=");
+            var id = url.substring(equalsFind + 1, url.length);
+
+            Contact.CustomerId = id;
+
+            ContactAdd(Contact);
+        }
+
+        function ContactAdd(Contact) {
 
 
+            // Post Contact object to web api
+            $.ajax({
+                url: "http://localhost:52734/api/Contacts",
+                type: 'POST',
+                contentType:"application/json;charset=utf-8",
+                data: JSON.stringify(Contact),
+                success: function (Contact) {
+                    ContactAddSuccess(Contact);
+                },
+                error: function (request, message, error) {
+                    handleException(request, message, error);
+                }
+            });
+        }
 
+        function ContactAddSuccess(product) {
+            //On success redirect back to index page
+            window.location.href = '/pages/Index.html'
+        }
+
+        function handleException(request, message,
+             error) {
+            var msg = "";
+            msg += "Code: " + request.status + "\n";
+            msg += "Text: " + request.statusText + "\n";
+            if (request.responseJSON != null) {
+                msg += "Message" +
+                    request.responseJSON.Message + "\n";
+            }
+            alert(msg);
+        }
     </script>
 </body>
 </html>
