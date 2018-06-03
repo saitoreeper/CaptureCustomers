@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/style.css" rel="stylesheet" />
+    <link href="../Content/datatables.min.css" rel="stylesheet" />
 </head>
 <body class="skin-1">
 
@@ -19,7 +20,7 @@
                                 <h5>Contacts List</h5>
                             </div>
                             <div class="ibox-content">
-                                <table id="productTable" class="table table-borderedtable-condensed table-striped">
+                                <table id="contactsTable" width="100%" class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -40,12 +41,50 @@
     <footer>
         <script src="../scripts/jquery-1.9.1.min.js"></script>
         <script src="../scripts/bootstrap.min.js"></script>
+        <script src="../scripts/datatables.min.js"></script>
     </footer>
 
     <script>
 
         $(document).ready(function () {
             contactsList();
+
+            setTimeout(function () {
+                $(document).ready(function () {
+
+                    $('.dataTables-example').DataTable({
+                        dom: '<"html5buttons"B>lTfgitp',
+                        buttons: [
+                            { extend: 'copy' },
+                            { extend: 'csv' },
+                            { extend: 'excel', title: 'All Campaigns' },
+                            { extend: 'pdf', title: 'All Campaigns' },
+
+                            {
+                                extend: 'print',
+                                customize: function (win) {
+                                    $(win.document.body).addClass('white-bg');
+                                    $(win.document.body).css('font-size', '10px');
+
+                                    $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                                }
+                            }
+                        ],
+                        "scrollX": true
+                    });
+
+                    var message = 'd';
+                    if (message != 'd') {
+                        swal({
+                            title: "Success",
+                            text: "d",
+                            type: "success"
+                        });
+                    }
+                });
+            }, 1000);
         });
 
         function contactsList() {
@@ -79,11 +118,11 @@
 
             function contactsAddRow(contacts, count) {
                 // Check if <tbody> tag exists, add one if not
-                if ($("#productTable tbody").length == 0) {
-                    $("#productTable").append("<tbody></tbody>");
+                if ($("#contactsTable tbody").length == 0) {
+                    $("#contactsTable").append("<tbody></tbody>");
                 }
                 // Append row to <table>
-                $("#productTable tbody").append(
+                $("#contactsTable tbody").append(
                   contactsBuildTableRow(contacts, count));
             }
 
@@ -107,7 +146,6 @@
                     msg += "Message" +
                         request.responseJSON.Message + "\n";
                 }
-                alert(msg);
             }
         }
     </script>
