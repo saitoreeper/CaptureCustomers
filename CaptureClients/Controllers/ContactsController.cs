@@ -77,16 +77,17 @@ namespace CaptureClients.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Contacts
-        public HttpResponseMessage PostContact(Contact contact)
+        // POST api/<controller>
+        [HttpPost()]
+        public IHttpActionResult PostContact(Contact contact)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Contacts.Add(contact);
-                db.SaveChanges();
-                return this.Request.CreateResponse(HttpStatusCode.OK);
+                return BadRequest("FAILED");
             }
-            return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            db.Contacts.Add(contact);
+            db.SaveChanges();
+            return Ok(contact);
         }
 
         // DELETE: api/Contacts/5

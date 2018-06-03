@@ -33,15 +33,16 @@ namespace CaptureClients.Controllers
         }
 
         // POST api/<controller>
-        public HttpResponseMessage Post(Customer customer)
+        [HttpPost()]
+        public IHttpActionResult Post(Customer customer)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                CustomersHelper CustomerHelper = new CustomersHelper();
-                CustomerHelper.SaveCustomer(customer);
-                return this.Request.CreateResponse(HttpStatusCode.OK);
+                return BadRequest("FAILED");
             }
-            return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            CustomersHelper CustomerHelper = new CustomersHelper();
+            CustomerHelper.SaveCustomer(customer);
+            return Ok(customer);
         }
 
         // PUT api/<controller>/5

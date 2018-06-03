@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>View contacts</title>
+    <title>Add customers</title>
     <meta charset="utf-8" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/style.css" rel="stylesheet" />
@@ -81,8 +81,8 @@
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function (form) {
-                form.submit();
                 addCustomerClick();
+                return false;
             }
         });
 
@@ -109,7 +109,7 @@
             $.ajax({
                 url: "http://localhost:52734/api/customers",
                 type: 'POST',
-                contentType: "application/json;",
+                contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(customer),
                 success: function (customer) {
                     customerAddSuccess(customer);
@@ -134,7 +134,6 @@
                 msg += "Message" +
                     request.responseJSON.Message + "\n";
             }
-            alert(msg);
         }
     </script>
 
