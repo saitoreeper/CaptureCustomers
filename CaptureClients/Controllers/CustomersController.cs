@@ -33,7 +33,7 @@ namespace CaptureClients.Controllers
         }
 
         // POST api/<controller>
-        public HttpResponseMessage Post([FromBody]Customer customer)
+        public HttpResponseMessage Post(Customer customer)
         {
             if (ModelState.IsValid)
             {

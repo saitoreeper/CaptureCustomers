@@ -43,7 +43,7 @@
                             <label for="longitude">Contact Number</label>
                             <input type="text" id="contactNumber" name="contactNumber" class="form-control" />
                         </div>
-                        <button type="submit" id="updateButton" class="btn btn-primary">Add Contact</button>
+                        <button type="submit" id="updateButton" onclick="addContactClick()" class="btn btn-primary">Add Contact</button>
                     </form>
                 </div>
                 <div class="panel-footer">
@@ -65,7 +65,7 @@
 
     <script>
         // Initialize form validation on the contact form.
-        $("form[name='addContactForm']").validate({
+        $("form[name='addContactForm1']").validate({
             // Specify validation rules
             rules: {
                 name: "required",
@@ -101,7 +101,7 @@
             Name: "",
             Email: "",
             ContactNumber: "",
-            ContactId: 0
+            CustomerId: 0
         }
 
         function addContactClick() {
@@ -116,7 +116,7 @@
             var equalsFind = url.indexOf("=");
             var id = url.substring(equalsFind + 1, url.length);
 
-            Contact.ContactId = id;
+            Contact.CustomerId = id;
 
             ContactAdd(Contact);
         }
