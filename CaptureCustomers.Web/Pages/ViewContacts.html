@@ -4,28 +4,38 @@
     <title>View contacts</title>
     <meta charset="utf-8" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/style.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h2>Paul’s Training Company</h2>
+<body class="skin-1">
+
+    <div id="wrapper">
+
+        <div class="wrapper wrapper-content">
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Contacts List</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <table id="productTable" class="table table-borderedtable-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Contact Number</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                    <a href="Index.html"><button class="btn-lg btn-info">Back</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <table id="productTable"
-           class="table table-bordered
-                 table-condensed table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact Number</th>
-            </tr>
-        </thead>
-    </table>
-
-
 
     <footer>
         <script src="../scripts/jquery-1.9.1.min.js"></script>
@@ -33,7 +43,7 @@
     </footer>
 
     <script>
-      
+
         $(document).ready(function () {
             contactsList();
         });
@@ -102,4 +112,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -4,35 +4,47 @@
     <title>View customers</title>
     <meta charset="utf-8" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/style.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h2>Paul’s Training Company</h2>
-            </div>
-        </div>
-    </div>
-    <table id="productTable"
-           class="table table-bordered
-                 table-condensed table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Latitude</th>
-                <th>longitude</th>
-                <th>Links</th>
-            </tr>
-        </thead>
-    </table>
+<body class="skin-1">
 
-    <div class="row">
-        <div class="col-sm-6">
-            <button type="button" id="addButton"
-                    class="btn btn-primary"
-                    onclick="addClick();">
-                Add Product
-            </button>
+    <div id="wrapper">
+
+        <div class="wrapper wrapper-content">
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <div class="row">
+                                    <div class="col-sm-10 col-xs-6">
+                                        <h5>Customers List</h5>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-6">
+                                        <a href="AddCustomer.html"><button class="btn-lg btn-info">Add Customer</button></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="ibox-content">
+
+                                <table id="productTable" class="table table-bordered table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Latitude</th>
+                                            <th>longitude</th>
+                                            <th>Links</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 
@@ -64,7 +76,7 @@
                 var count = 0;
                 // Iterate over the collection of data
                 $.each(customers, function (index, product) {
-                    // Add a row to the Product table                    
+                    // Add a row to the Product table
                     customersAddRow(customers, count);
                     count = count + 1;
                 });
@@ -87,9 +99,10 @@
                    "<td>" + customer.Name + "</td>" +
                    "<td>" + customer.Latitude + "</td>"
                     + "<td>" + customer.longitude + "</td>" +
-                     "<td><a href=" + "ViewContacts.html?id=" + customer.ID + ">View Contacts</a> <a href=" + "AddContacts.html?id=" + customer.ID + ">Add Contacts</a></td>" +
+                     "<td><a href=" + "ViewContacts.html?id=" + customer.ID + "><button class=" + "btn-primary" + ">View Contacts</button></a> <a href=" + "AddContacts.html?id=" + customer.ID + "><button class=" + "btn-primary" + ">Add Contacts</button></a></td>" +
                   "</tr>";
                 return ret;
+
             }
 
             function handleException(request, message,
