@@ -11,9 +11,11 @@ using System.Web.Http.Description;
 using CaptureClients.DataContexts;
 using CaptureClients.Entities;
 using CaptureClients.Helpers;
+using System.Web.Http.Cors;
 
 namespace CaptureClients.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactsController : ApiController
     {
         private CustomerCaptureDb db = new CustomerCaptureDb();
@@ -75,19 +77,17 @@ namespace CaptureClients.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Contacts
-        [ResponseType(typeof(Contact))]
+        // POST api/<controller>
+        [HttpPost()]
         public IHttpActionResult PostContact(Contact contact)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("FAILED");
             }
-
             db.Contacts.Add(contact);
             db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = contact.ID }, contact);
+            return Ok(contact);
         }
 
         // DELETE: api/Contacts/5

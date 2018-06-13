@@ -7,14 +7,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace CaptureClients.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CustomersController : ApiController
     {
 
-        // GET: api/Contacts/5
+        // GET: api/Customers/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult GetContacts()
         {            
@@ -31,15 +33,16 @@ namespace CaptureClients.Controllers
         }
 
         // POST api/<controller>
-        public HttpResponseMessage Post([FromBody]Customer customer)
+        [HttpPost()]
+        public IHttpActionResult Post(Customer customer)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                CustomersHelper CustomerHelper = new CustomersHelper();
-                CustomerHelper.SaveCustomer(customer);
-                return this.Request.CreateResponse(HttpStatusCode.OK);
+                return BadRequest("FAILED");
             }
-            return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            CustomersHelper CustomerHelper = new CustomersHelper();
+            CustomerHelper.SaveCustomer(customer);
+            return Ok(customer);
         }
 
         // PUT api/<controller>/5
